@@ -1,4 +1,4 @@
 import { app } from './server/server';
 
 
-app.listen(3333, () => console.log('App rodando!'));
+app.listen(3000, () => console.log('App rodando!'));
