@@ -1,4 +1,4 @@
-import { IdGenerator } from '../services/interfaces/id-generator';
+import { IdGenerator } from '../services/interfaces/id-generator.service';
 import { ShortLinkRepositoryInterface } from '../domain/repositories/short-link.repository';
 import { ShortLink } from '../domain/entities/short-link.entity';
 import { injectable } from 'tsyringe';
@@ -14,21 +14,20 @@ export class CreateShortLinkUseCase {
 
     async execute(input : CreateShortLinkInput): Promise<CreateShortLinkOutput>{
         const token = await this.generateSmallIdentifier.generate();
-        input.token = token;
 
-        const link = new ShortLink(input);
+        const link = new ShortLink({...input, token});
+
         await this.shortLinkRepository.insert(link);
         return link.toJson();
     }
 }
 
 export type CreateShortLinkInput = {
-    token: string;
     title: string;
     originalUrl: string;
 }
 
-type CreateShortLinkOutput = {
+export type CreateShortLinkOutput = {
     originalUrl: string;
     token: string;
     clicksCount?: number;

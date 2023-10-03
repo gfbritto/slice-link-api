@@ -13,7 +13,6 @@ describe('Create shorted link usecase', () => {
 
         const createShortLinkInput: CreateShortLinkInput = {
             originalUrl: 'http://www.google.com',
-            token: 'http://localhost:3000/1',
             title: 'Google shorted url'
         };
         //Act

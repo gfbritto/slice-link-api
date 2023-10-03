@@ -1,4 +1,4 @@
-import { ShortLink, ShortLinkProperties } from '../../domain/short-link.entity';
+import { ShortLink, ShortLinkProperties } from '../../domain/entities/short-link.entity';
 
 describe('Link tests', () => {
     test('constructor', () => {
