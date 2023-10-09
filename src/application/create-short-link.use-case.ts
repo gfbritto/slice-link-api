@@ -1,24 +1,24 @@
-import { IdGenerator } from '../services/interfaces/id-generator.service';
-import { ShortLinkRepositoryInterface } from '../domain/repositories/short-link.repository';
+import { autoInjectable } from 'tsyringe';
 import { ShortLink } from '../domain/entities/short-link.entity';
-import { injectable } from 'tsyringe';
+import { ShortLinkInMemoryRepository } from '../infraestructure/persistence/short-link-in-memory.repository';
+import { NanoIdGeneratorService } from '../services/implementation/nano-id-generator.service';
 
-@injectable()
+@autoInjectable()
 export class CreateShortLinkUseCase {
 
     constructor(
-        private shortLinkRepository : ShortLinkRepositoryInterface, 
-        private generateSmallIdentifier : IdGenerator){
-        
+        private shortLinkRepository: ShortLinkInMemoryRepository,
+        private generateSmallIdentifierService: NanoIdGeneratorService) {
+
     }
 
-    async execute(input : CreateShortLinkInput): Promise<CreateShortLinkOutput>{
-        const token = await this.generateSmallIdentifier.generate();
+    async execute(input: CreateShortLinkInput): Promise<CreateShortLinkOutput> {
+        const token = await this.generateSmallIdentifierService.generate();
 
-        const link = new ShortLink({...input, token});
+        const link = new ShortLink({ ...input, token });
 
-        await this.shortLinkRepository.insert(link);
-        return link.toJson();
+        const shortedLink = await this.shortLinkRepository.insert(link);
+        return shortedLink.toJson();
     }
 }
 

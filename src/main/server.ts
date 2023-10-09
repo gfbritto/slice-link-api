@@ -1,9 +1,10 @@
 import Express from 'express';
-import 'dotenv/config';
-const app = Express();
 
-app.get('/', (req, res) => {
-    return res.send('Hello World!');
-});
+import shortLinkRoutes from '../presentation/http/routes/short-link.route';
 
-export { app };
+const server = Express();
+
+server.use(Express.json());
+server.use('/api', shortLinkRoutes);
+
+export { server };

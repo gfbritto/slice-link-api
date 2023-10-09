@@ -3,7 +3,7 @@ import { IdGenerator } from '../interfaces/id-generator.service';
 import { injectable } from 'tsyringe';
 
 @injectable()
-export class NanoIdGenerator implements IdGenerator {
+export class NanoIdGeneratorService implements IdGenerator {
     generate() : string {
         return nanoid();
     }

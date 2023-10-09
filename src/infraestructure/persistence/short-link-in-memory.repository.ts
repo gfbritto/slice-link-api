@@ -7,7 +7,8 @@ export class ShortLinkInMemoryRepository implements ShortLinkRepositoryInterface
 
     public shortLinks: ShortLink[] = [];
 
-    async insert(shortLink: ShortLink): Promise<void> {
+    async insert(shortLink: ShortLink): Promise<ShortLink> {
         this.shortLinks.push(shortLink);
+        return shortLink;
     }
 }
