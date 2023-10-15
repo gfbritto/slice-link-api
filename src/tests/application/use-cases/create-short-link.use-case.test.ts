@@ -1,5 +1,5 @@
-import { ShortLinkInMemoryRepository } from '../../infraestructure/persistence/short-link-in-memory.repository';
-import { CreateShortLinkInput, CreateShortLinkUseCase } from '../../application/create-short-link.use-case';
+import { ShortLinkInMemoryRepository } from '../../../infraestructure/persistence/short-link-in-memory.repository';
+import { CreateShortLinkInput, CreateShortLinkUseCase } from '../../../application/short-link/create-short-link.use-case';
 
 describe('Create shorted link usecase', () => {
 

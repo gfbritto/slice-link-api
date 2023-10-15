@@ -1,13 +1,13 @@
-import { autoInjectable } from 'tsyringe';
-import { ShortLink } from '../domain/entities/short-link.entity';
-import { ShortLinkInMemoryRepository } from '../infraestructure/persistence/short-link-in-memory.repository';
-import { NanoIdGeneratorService } from '../services/implementation/nano-id-generator.service';
+import { autoInjectable, inject } from 'tsyringe';
+import { ShortLink } from '../../domain/entities/short-link.entity';
+import { NanoIdGeneratorService } from '../../services/implementation/nano-id-generator.service';
+import { ShortLinkRepositoryInterface } from '../../domain/repositories/short-link.repository';
 
 @autoInjectable()
 export class CreateShortLinkUseCase {
 
     constructor(
-        private shortLinkRepository: ShortLinkInMemoryRepository,
+        @inject('ShortLinkRepository') private shortLinkRepository: ShortLinkRepositoryInterface,
         private generateSmallIdentifierService: NanoIdGeneratorService) {
 
     }

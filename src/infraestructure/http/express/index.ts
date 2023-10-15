@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { CreateShortLinkInput, CreateShortLinkUseCase } from '../../../application/create-short-link.use-case';
+import { CreateShortLinkInput, CreateShortLinkUseCase } from '../../../application/short-link/create-short-link.use-case';
 import { container } from 'tsyringe';
 
 const app = express();
