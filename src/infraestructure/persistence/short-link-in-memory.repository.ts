@@ -12,7 +12,10 @@ export class ShortLinkInMemoryRepository implements ShortLinkRepositoryInterface
     }
 
     async getAll(): Promise<ShortLink[]> {
-        return Promise.resolve(this.shortLinks);
+        return this.shortLinks;
     }
 
+    async findByToken(token: string): Promise<ShortLink | undefined> {
+        return this.shortLinks.find(shortLink => shortLink.token === token) || undefined;
+    }
 }
