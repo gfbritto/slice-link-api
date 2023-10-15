@@ -9,7 +9,7 @@ describe('Link tests', () => {
         };
 
         const link = new ShortLink(linkProperties);
-
+        expect(link.id).toBeDefined();
         expect(link.properties).toStrictEqual({
             ...linkProperties,
             clicksCount: 0

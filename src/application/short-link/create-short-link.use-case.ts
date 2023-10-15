@@ -28,6 +28,7 @@ export type CreateShortLinkInput = {
 }
 
 export type CreateShortLinkOutput = {
+    id: string;
     originalUrl: string;
     token: string;
     clicksCount?: number;

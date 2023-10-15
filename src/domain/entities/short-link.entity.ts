@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 export type ShortLinkProperties = {
     originalUrl: string;
     token: string;
@@ -7,7 +9,10 @@ export type ShortLinkProperties = {
 
 export class ShortLink {
     public properties: Required<ShortLinkProperties>;
-    constructor(properties: ShortLinkProperties) {
+    public readonly id: string;
+
+    constructor(properties: ShortLinkProperties, id?: string) {
+        this.id = id || crypto.randomUUID();
         this.properties = {
             ...properties,
             clicksCount: properties.clicksCount || 0
@@ -29,6 +34,7 @@ export class ShortLink {
         this.originalUrl = originalUrl;
 
     }
+
     updateShortUrl(shortUrl: string) {
         this.shortUrl = shortUrl;
     }
@@ -63,11 +69,18 @@ export class ShortLink {
         return this.properties.token;
     }
 
-
     private set shortUrl(value: string) {
         this.properties.token = value;
     }
-    toJson(){
-        return this.properties;
+
+    get token(): string {
+        return this.properties.token;
+    }
+
+    toJson() {
+        return {
+            id: this.id,
+            ...this.properties
+        };
     }
 }
