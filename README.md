@@ -1,3 +1,4 @@
+
 # Slice link - API
 
 ## Overview
@@ -32,15 +33,34 @@ yarn install
 3. Configure your environment variables in a `.env` file.
 
 4. Build and run the application:
+
 ```sh
 yarn dev
 ```
 
 ## Deploy
+
 ```sh
 yarn build
 yarn start
 ```
 
+### Using Docker for Development (Optional)
+
+You can also run the application using Docker for development. Ensure that you have Docker and Docker Compose installed on your system.
+
+1. Clone the repository:
+
+2. Create a `.env` file with your environment variables, if you haven't already.
+
+3. Build and start the application using Docker Compose:
+
+```sh
+docker-compose up
+```
+
+This will build the Docker image and start the application in a container.
+
 ## Usage
+
 To use the URL shortening API, make HTTP requests to the provided endpoints.

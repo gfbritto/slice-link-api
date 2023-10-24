@@ -1,10 +1,13 @@
 version: '3'
 services:
-  api:
+  app:
     build:
       context: .
-      dockerfile: Dockerfile  # Nome do seu Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - .:/app  # Isso montará seu diretório atual dentro do contêiner em /app
+      - .:/app
+    environment:
+      PORT: 3000
+      NODE_ENV: development
